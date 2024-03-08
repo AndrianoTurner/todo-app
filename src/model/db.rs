@@ -1,9 +1,9 @@
 
 
-use serde::{Deserialize, Serialize};
+
 use crate::prelude::*;
 use crate::model::models::*;
-use log::{info};
+
 use sqlx::sqlite::SqlitePool;
 
 
@@ -30,7 +30,7 @@ pub async fn create_todo(db : &SqlitePool,todo : Todo) -> Result<i64>{
     Ok(id)
 }
 
-pub async fn get_todo(db : &SqlitePool,todo_id : i64) -> Result<Option<TodoRecord>>{
+pub async fn get_todo(db : &SqlitePool,_todo_id : i64) -> Result<Option<TodoRecord>>{
     let mut conn = db.acquire().await?;
     let res = sqlx::query_as!(TodoRecord,r#"
         SELECT * FROM todos
@@ -53,7 +53,7 @@ pub async fn update_todo(db : &SqlitePool,todo_id : i64, patch : UpdateTodo) -> 
     let UpdateTodo{completed,description,title} = patch;
     if let Ok(todo) = todo{
         if let Some(todo) = todo{
-            let res = sqlx::query(r#"
+            let _res = sqlx::query(r#"
                 UPDATE todos SET title = ?1, description = ?2, completed = ?3 WHERE id = ?4"#)
                 .bind(title.unwrap_or(todo.title))
                 .bind(description.unwrap_or(todo.description))
@@ -95,10 +95,10 @@ pub async fn list_todos(db : &SqlitePool) -> Result<Option<Vec<TodoRecord>>>{
 
 
 mod test{
-    use super::create_todo;
-    use super::init_db;
-    use super::Result;
-    use super::Todo;
+    
+    
+    
+    
     #[tokio::test]
     async fn test_db_init() -> Result<()>{
         let db = init_db().await?;
