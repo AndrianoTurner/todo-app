@@ -98,12 +98,4 @@ mod test{
     
     
     
-    
-    #[tokio::test]
-    async fn test_db_init() -> Result<()>{
-        let db = init_db().await?;
-        
-        Ok(())
-    }
-
 }

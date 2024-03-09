@@ -1,4 +1,4 @@
-/target
-/todos.db
-/.env
-/.sqlx
+target
+todos.db
+.env
+.sqlx

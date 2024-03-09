@@ -1,0 +1,17 @@
+.todo-card-container{
+    text-align: center;
+    font-family: Arial,sans-serif;
+    width: 300px;
+    border: 1px solid hsla(0, 3%, 39%, 0.801);
+    margin: 0 auto;
+    box-shadow: 5px 2px 5px hsla(0, 3%, 39%, 0.801);
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.todo-card-container .title{
+    padding: 3px 6px;
+    color: #f1faee;
+    background-color: rgba(233, 163, 65, 0.788);
+    border-radius: 10px;
+}
