@@ -2,3 +2,4 @@ target
 todos.db
 .env
 .sqlx
+todos.db*
