@@ -4,13 +4,30 @@ import Form from './Form/Form';
 import FilterButton from './FilterButton/FilterButton';
 import TodoCard from './TodoCard/TodoCard';
 import { useState } from 'react';
+import axios from 'axios';
 
+function post_create_todo({title,description,completed}){
+  const res = axios.post("http://localhost:8080/create-todo",{
+    title : title,
+    description : description,
+    completed : completed
+  });
+  return res.data;
+}
+
+function delete_todo(id){
+  const res = axios.delete('http://localhost:8080/todo/' + id)
+  return res.data;
+}
 function App({data}) {
   
-  const [tasks, setTasks] = useState(data);
+  const [tasks,setTasks] = useState( data.map((obj) => obj));
 
   function addTask(title) {
-    let id = tasks.length;
+    if (title == undefined || title == ""){
+      title = "Not set";
+    }
+    let id = post_create_todo({title : title, description : "test", completed : false});
     const newTask = { id: id, title, completed: false };
     setTasks([...tasks, newTask]);
   }
@@ -26,6 +43,7 @@ function App({data}) {
   }
 
   function deleteTask(id){
+    delete_todo(id);
     const updatedTasks = tasks.filter((task) => (id != task.id));
     setTasks(updatedTasks);
   }

@@ -3,7 +3,11 @@ function Form({addTask}){
 
     const [title, setTitle] = useState("");
     function handleChange(event) {
-        setTitle(event.target.value);
+        var title = event.target.value;
+        if (title == undefined){
+            title = "Not set";
+        }
+        setTitle(title);
     };
 
     function handleSubmit(event) {

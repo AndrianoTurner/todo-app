@@ -11,7 +11,7 @@ use crate::routes::*;
 use model::db::Database;
 
 use env_logger::{self, init};
-
+use actix_cors::Cors;
 
 
 #[actix_web::main]
@@ -22,7 +22,9 @@ async fn main() -> Result<()> {
     let app_data = Data::new(Database::new().await?);
 
     HttpServer::new(move || {
+        let cors = Cors::permissive();
         App::new().app_data(app_data.clone())
+            .wrap(cors)
             .service(hello)
             .service(echo)
             .service(list_todos)

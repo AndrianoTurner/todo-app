@@ -3,3 +3,4 @@ todos.db
 .env
 .sqlx
 todos.db*
+node_modules
